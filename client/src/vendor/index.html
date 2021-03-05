@@ -26,7 +26,24 @@
     ></script>
   </head>
   <body bg-controller="MainCtrl as main">
-    <div class="navbar navbar-fixed-top navbar-default"></div>
+    <div class="navbar navbar-fixed-top navbar-default">
+      <div class="navabar-header">
+        <a class="logo navbar-brand" href="#/">
+          <img src="assets/img/angello.png" />
+        </a>
+      </div>
+      <div class="btn-group pull-right" ng-show="currentUser">
+        <a class="btn btn-danger" href="#/">
+          <span class="glyphicon glyphicon-home"></span>
+        </a>
+        <a class="btn btn-danger" href="#/users">
+          <span class="glyphicon glyphicon-home"></span>
+        </a>
+        <a class="btn btn-danger" href="#/dashboard">
+          <span class="glyphicon glyphicon-home"></span>
+        </a>
+      </div>
+    </div>
     <div ng-view=""></div>
     <div class="modal"></div>
   </body>
