@@ -1,0 +1,19 @@
+{
+  "name": "angello",
+  "version": "1.0.0",
+  "description": "Task management web-app written in AngularJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nishitsuthar/angello.git"
+  },
+  "author": "Nishit Suthar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nishitsuthar/angello/issues"
+  },
+  "homepage": "https://github.com/Nishitsuthar/angello#readme"
+}

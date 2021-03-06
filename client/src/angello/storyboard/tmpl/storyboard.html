@@ -11,7 +11,13 @@
       >
         <article>
           <div>
-            <button type="button" class="close">x</button>
+            <button
+              type="button"
+              class="close"
+              ng-click="storyboard.deleteStory(story.id)"
+            >
+              x
+            </button>
             <p class="title">{{story.title}}</p>
           </div>
           <div class="type-bar" {{story.type}}></div>
@@ -23,3 +29,62 @@
     </ul>
   </div>
 </div>
+<!-------------------------------- right side column in the story board  ------------------------------>
+<div class="details">
+  <h3>Card Details</h3>
+  <form name="storyboard.detailsForm">
+    <div class="form-group">
+      <div class="controls">
+        <label class="control-label" for="inputTitle">*Title</label>
+        <input
+          type="text"
+          id="inputTitle"
+          name="inputTitle"
+          placeholder="Title"
+          ng-model="storyboard.editedstory.title"
+          ng-required="true"
+          ng-minlength="3"
+          ng-maxlength="30"
+          class="form-control"
+        />
+      </div>
+    </div>
+  </form>
+  <hr />
+  <!--------------------- if the currentStory is not present then pass this div  -------------------->
+  <div ng-if="!storyboard.currentStory">
+    <button
+      class="btn pull-right btn-default"
+      ng-disabled="!storyboard.detailsForm.$valid"
+      ng-click="storyboard.createStory()"
+    >
+      Create Story
+    </button>
+  </div>
+  <!--------------------- if the currentStory is present then pass this div  -------------------->
+  <div ng-if="storyboard.currentStory">
+    <button class="btn btn-default" ng-click="storyboard.updateCancel()">
+      Cancel
+    </button>
+    <button
+      class="btn pull-right btn-default"
+      ng-disabled="!storyboard.detailsForm.$valid"
+      ng-click="storyboard.updateStory()"
+    >
+      Update Story
+    </button>
+  </div>
+</div>
+
+<!----------------- reporter in column -------------->
+
+<select
+  name="inputReporter"
+  id="inputReporter"
+  ng-model="storyboard.editedstory.reporter"
+  ng-required="true"
+  ng-options="user.id as user.name for user in storyboard.users"
+  class="form-control"
+>
+  <option value="">Please Select...</option>
+</select>
