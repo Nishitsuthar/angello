@@ -26,3 +26,28 @@ it("should delete a story", function () {
   ctrl.deleteStory(story.id);
 });
 expect(ctrl.stories).not.toContain(story);
+
+describe("Loading Service", function () {
+  var $rootScope, LoadingService;
+
+  beforeEach(module("Angello.Common"));
+  beforeEach(inject(function (_$rootScope_, _LoadingService_) {
+    $rootScope = $_rootScope_;
+    LoadingService = _LoadingService_;
+  }));
+  it("should update $rootScope to false when setLoading is set to false", function () {
+    LoadingService.setLoading(false);
+    expect($rootScope.LoadingView).toEqual(false);
+  });
+  it("should update $rootScope to true when setLoading is set to true", function () {
+    LoadingService.setLoading(true);
+    expect($rootScope.LoadingView).toEqual(true);
+  });
+});
+
+describe("Stories Model", function () {
+  afterEach(inject(function ($httpBackend) {
+    $httpBackend.verifyNoOutstandingExpectation();
+    $httpBackend.verifyNoOutstandingRequest();
+  }));
+});

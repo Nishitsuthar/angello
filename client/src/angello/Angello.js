@@ -13,7 +13,7 @@ var myModule = angular.module("Angello", [
   "angular-storage",
 ]);
 
-myModule.config(function ($routeProvider, $httpProvider) {
+myModule.config(function ($routeProvider, $httpProvider, $provide) {
   $routeProvider
     .when("/", {
       templateUrl: "src/angello/storyboard/tmpl/storyboard.html",
@@ -43,6 +43,17 @@ myModule.config(function ($routeProvider, $httpProvider) {
     .otherwise({ redirectTo: "/" });
 
   $httpProvider.interceptors.push("loadingInterceptor");
+
+  $provide.decorator('$log', function($delegate){
+    function timestamp(){}
+    var debugFn = $delegate.debug;
+
+    $delegate.debug = function(){
+      arguments[0] = timestamp() + '-' + arguments[0];
+      debugFn.apply(null, arguments)
+    }
+    return $delegate;
+  });
 });
 
 module.value("STORY_TYPE", [
