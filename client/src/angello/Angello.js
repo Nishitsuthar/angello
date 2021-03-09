@@ -42,3 +42,12 @@ myModule.config(function ($routeProvider) {
     })
     .otherwise({ redirectTo: "/" });
 });
+
+module.value("STORY_TYPE", [
+  {
+    name: "Feature",
+    name: "Enhancement",
+    name: "Bug",
+    name: "Spike",
+  },
+]);
