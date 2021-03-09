@@ -82,6 +82,12 @@ angular
       storyboard.resetForm();
     };
 
+    storyboard.getStories = function () {
+      StoriesModel.all().then(function (result) {
+        console.log(result.data);
+      });
+    };
+
     // making available service for service board view
 
     var myStory = this;
