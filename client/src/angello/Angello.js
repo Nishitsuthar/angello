@@ -13,7 +13,7 @@ var myModule = angular.module("Angello", [
   "angular-storage",
 ]);
 
-myModule.config(function ($routeProvider) {
+myModule.config(function ($routeProvider, $httpProvider) {
   $routeProvider
     .when("/", {
       templateUrl: "src/angello/storyboard/tmpl/storyboard.html",
@@ -41,6 +41,8 @@ myModule.config(function ($routeProvider) {
       controllerAs: "login",
     })
     .otherwise({ redirectTo: "/" });
+
+  $httpProvider.interceptors.push("loadingInterceptor");
 });
 
 module.value("STORY_TYPE", [
@@ -51,3 +53,17 @@ module.value("STORY_TYPE", [
     name: "Spike",
   },
 ]);
+
+myModule.factory("loadingInterceptor", function (LoadingService) {
+  var loadingInterceptor = {
+    request: function (config) {
+      LoadingService.setLoading(true);
+      return config;
+    },
+    response: function (response) {
+      LoadingService.setLoading(false);
+      return response;
+    },
+  };
+  return loadingInterceptor;
+});

@@ -83,9 +83,15 @@ angular
     };
 
     storyboard.getStories = function () {
-      StoriesModel.all().then(function (result) {
-        console.log(result.data);
-      });
+      StoriesModel.all().then(
+        function (result) {
+          storyboard.stories = result !== "null" ? result : {};
+          $log.debug("RESULT", result);
+        },
+        function (reason) {
+          $log.debug("REASON", reason);
+        }
+      );
     };
 
     // making available service for service board view
